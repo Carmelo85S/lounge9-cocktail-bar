@@ -1,0 +1,46 @@
+import heroBg from '../../assets/hero.webp';
+
+const Hero = () => {
+  return (
+    <section 
+        className="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white text-center px-4 py-16"
+        style={{ backgroundImage: `url(${heroBg})` }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60 z-0"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-2xl text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4">
+          Venue<span className="text-amber">9</span>
+        </h1>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-4">
+          Bar & Lounge
+        </h2>
+        <div className='w-5/6 mx-auto mb-4'>
+            <p className="text-xs sm:text-sm md:text-lg mb-8">
+          Experience the perfect blend of casual elegance, exquisite cocktails, and delicious cuisine in the heart of the city.
+        </p>
+        </div>
+
+        {/* Button Container */}
+        <div className='flex flex-col sm:flex-row justify-center w-5/6 mx-auto mb-4 gap-4'>
+          <button 
+            className="bg-amber text-night px-4 py-2 rounded-full font-semibold text-lg hover:bg-amber-dark transition"
+            aria-label="Book a Table"
+          >
+            Book a Table
+          </button>
+          <button 
+            className="text-amber-light hover:text-night px-4 py-2 border border-amber rounded-full font-semibold text-lg hover:bg-amber-dark transition"
+            aria-label="View the Menu"
+          >
+            View Menu
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
