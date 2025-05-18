@@ -3,6 +3,7 @@ import heroBg from '../../assets/hero.webp';
 const Hero = () => {
   return (
     <section 
+        id="home"
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white text-center px-4 py-16"
         style={{ backgroundImage: `url(${heroBg})` }}
     >
@@ -12,7 +13,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-2xl text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4">
-          Venue<span className="text-amber">9</span>
+          Lounge<span className="text-amber">9</span>
         </h1>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-4">
           Bar & Lounge

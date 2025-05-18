@@ -6,7 +6,7 @@ import image4 from '../../assets/pouring.webp'
 
 const About = () => {
   return (
-    <section className="bg-cream text-night py-24">
+    <section id="about" className="bg-cream text-night py-24">
       {/* Hero */}
       <div className="container text-center mb-20">
         <h2 className="text-5xl md:text-6xl font-serif font-bold mb-4">
@@ -37,26 +37,23 @@ const About = () => {
                 <h3 className="text-3xl font-serif font-bold text-amber-dark mb-10 text-center">
                 Opening Hours & Location
                 </h3>
-                <div className="flex flex-col md:flex-row justify-center items-start md:items-center gap-14 text-lg font-sans">
+                <div className="flex justify-center items-center md:items-center text-lg font-sans">
                 {/* Hours */}
-                    <div className="flex items-start gap-5">
-                        <Clock className="w-6 h-6 text-amber-dark mt-1" />
+                    <div className="flex items-start w-full gap-5">
+                        <Clock className="w-8 h-6 text-amber-dark mt-1" />
                         <div className="flex flex-col w-full">
-                            <p className="font-semibold">Opening Hours</p>
+                            <p className="font-semibold">Opening</p>
                             <p>Mon - Sun</p>
                             <p>16:00 - 1:00</p>
                         </div>
                     </div>
 
-                    {/* Divider */}
-                    <div className="hidden md:block h-12 w-px bg-amber-light" />
-
                     {/* Location */}
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start w-full gap-4">
                         <MapPin className="w-6 h-6 text-amber-dark mt-1" />
                         <div>
                         <p className="font-semibold">Location</p>
-                        <p>Ground Floor, Grand Plaza Hotel</p>
+                        <p>Grand Plaza Hotel</p>
                         <p>42 Park Avenue</p>
                         </div>
                     </div>

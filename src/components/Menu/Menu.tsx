@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { MenuData } from "../../types/types";
 
 const Menu = () => {
-  const menuData: {
-    [key: string]: { name: string; description: string; price: string }[];
-  } = {
+
+const menuData: MenuData = { 
     Cocktails: [
       { name: "Negroni", description: "Gin, Campari, sweet vermouth", price: "185 SEK" },
       { name: "Old Fashioned", description: "Bourbon, bitters, sugar cube, orange zest", price: "190 SEK" },
@@ -33,7 +33,7 @@ const Menu = () => {
   const [activeTab, setActiveTab] = useState<keyof typeof menuData>("Cocktails");
 
   return (
-    <section id="menu" className="bg-amber-light/10 py-16 px-4 sm:px-8 lg:px-24 font-serif py-16">
+    <section id="menu" className="bg-amber-light/10 py-16 px-4 sm:px-8 lg:px-24 font-serif">
         <div className="flex flex-col justify-between items-center">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4">
                 Our Menu

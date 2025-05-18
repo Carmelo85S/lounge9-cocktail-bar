@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-serif font-bold text-night cursor-pointer" onClick={() => scrollTo('home')}>
-          Venue<span className="text-amber text-4xl">9</span>
+          Lounge<span className="text-amber text-4xl">9</span>
         </div>
 
         {/* Desktop */}
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
           ))}
           <li>
             <button
-              onClick={() => scrollTo('booking')}
+              onClick={() => scrollTo('contact')}
               className="bg-night text-cream px-4 py-2 rounded-lg hover:bg-amber transition"
             >
               Book a Table
