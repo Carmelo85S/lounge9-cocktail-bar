@@ -5,30 +5,30 @@ const Events: React.FC = () => {
   const eventData: EventData = {
     Events: [
       {
-        img: "https://images.pexels.com/photos/1049690/pexels-photo-1049690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        img: "https://images.pexels.com/photos/3394310/pexels-photo-3394310.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         name: "Afterwork Fridays",
         time: "17:00 - 21:00",
         description: "Start your weekend with curated cocktails and relaxing beats.",
         onClick: () => {
-          console.log("Afterwork clicked 1");
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
         },
       },
       {
         img: "https://images.pexels.com/photos/1049690/pexels-photo-1049690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        name: "Live DJ Nights",
+        name: "Live Jazz Nights",
         time: "Every Thursday",
         description: "Enjoy deep house and lounge music in a luxurious setting.",
         onClick: () => {
-          console.log("Afterwork clicked 2");
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
         },
       },
       {
-        img: "https://images.pexels.com/photos/1049690/pexels-photo-1049690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        img: "https://images.pexels.com/photos/11522840/pexels-photo-11522840.jpeg?auto=compress&cs=tinysrgb&w=600",
         name: "Sunset Aperitivo",
         time: "Sundays 16:00 - 20:00",
         description: "Unwind with spritzes and tapas during golden hour.",
         onClick: () => {
-          console.log("Afterwork clicked 3");
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
         },
       },
     ],
@@ -65,8 +65,11 @@ const Events: React.FC = () => {
                         <p className="text-sm text-gray-500 font-semibold">{event.time}</p>
                         <p className="text-sm text-night mt-1">{event.description}</p>
                         <button
-                        className="mt-4 self-start px-5 py-2 bg-amber-dark text-white rounded-full text-sm font-semibold hover:bg-amber hover:shadow transition"
+                          onClick={event.onClick}
+                          className="mt-4 self-start px-5 py-2 bg-amber-dark text-white rounded-full text-sm font-semibold hover:bg-amber hover:shadow transition"
                         >
+                          Book
+
                         Book a Table
                         </button>
                     </div>
@@ -84,11 +87,14 @@ const Events: React.FC = () => {
                 Lounge9 be reserved for private events, corporate gatherings, and special celebrations.
                 Contact our events team to discuss your requirements.
             </p>
-            <button
+              <button
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="inline-block px-6 py-3 bg-amber-dark text-white rounded-full text-sm sm:text-base font-semibold hover:bg-amber hover:shadow-lg transition"
-            >
+              >
                 Inquire for Private Events
-            </button>
+              </button>
         </div>
     </section>
   );

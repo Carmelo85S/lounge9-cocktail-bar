@@ -14,10 +14,9 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', id: 'home' },
-    { name: 'Menu', id: 'menu' },
-    { name: 'Gallery', id: 'gallery' },
     { name: 'About', id: 'about' },
-    { name: 'Contact', id: 'contact' },
+    { name: 'Menu', id: 'menu' },
+    { name: 'Gallery', id: 'gallery' }
   ];
 
   return (
@@ -71,7 +70,7 @@ const Navbar: React.FC = () => {
             ))}
             <li>
               <button
-                onClick={() => scrollTo('booking')}
+                onClick={() => scrollTo('contact')}
                 className="w-full text-left bg-night text-cream px-4 py-2 rounded-lg hover:bg-amber transition"
               >
                 Book a Table
