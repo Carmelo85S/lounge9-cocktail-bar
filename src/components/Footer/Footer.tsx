@@ -5,7 +5,7 @@ const Footer = () => {
         
         {/* Brand / Logo / Descrizione */}
         <div>
-          <h3 className="text-2xl font-serif font-bold text-amber-dark mb-4">Velvet Hour</h3>
+          <h3 className="text-2xl font-serif font-bold text-amber-dark mb-4">Lounge<span className="text-amber">9</span></h3>
           <p className="text-sm font-sans text-gray-300 leading-relaxed">
             A refined space for cocktails, conversations, and timeless evenings. <br />
             Join us for unforgettable nights in the heart of the city.
@@ -42,7 +42,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="mt-12 text-center text-xs text-gray-500 font-sans">
-        © {new Date().getFullYear()} Velvet Hour. All rights reserved.
+        © {new Date().getFullYear()} Lounge<span className="text-amber">9</span>. All rights reserved.
       </div>
     </footer>
   );
