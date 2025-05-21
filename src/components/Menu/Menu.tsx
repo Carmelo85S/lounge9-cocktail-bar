@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MenuData } from "../../types/types";
 
 const Menu = () => {
-
-const menuData: MenuData = { 
+  const menuData: MenuData = { 
     Cocktails: [
       { name: "Negroni", description: "Gin, Campari, sweet vermouth", price: "185 SEK" },
       { name: "Old Fashioned", description: "Bourbon, bitters, sugar cube, orange zest", price: "190 SEK" },
@@ -32,61 +32,98 @@ const menuData: MenuData = {
 
   const [activeTab, setActiveTab] = useState<keyof typeof menuData>("Cocktails");
 
+  // Variants per animazioni
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <section id="menu" className="bg-amber-light/10 py-16 px-4 sm:px-8 lg:px-24 font-serif">
-        <div className="flex flex-col justify-between items-center">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4">
-                Our Menu
-            </h2>
-            <p className="text-lg font-serif font-bold mb-4">
-                Carefully crafted cocktails and delicious bites
-            </p>
+      {/* Header */}
+      <motion.div
+        className="flex flex-col justify-between items-center mb-8"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4">
+          Our Menu
+        </h2>
+        <p className="text-lg font-serif font-bold">
+          Carefully crafted cocktails and delicious bites
+        </p>
+      </motion.div>
+
+      <div className="max-w-5xl mx-auto">
+        {/* Tabs */}
+        <div className="flex flex-wrap justify-center gap-4 mb-10 border-b border-amber-dark pb-4">
+          {Object.keys(menuData).map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveTab(category as keyof typeof menuData)}
+              className={`px-5 py-2 text-md rounded-full transition-all duration-300 tracking-wide ${
+                activeTab === category
+                  ? "bg-amber text-white shadow-md"
+                  : "bg-white text-night border border-amber hover:bg-amber-light hover:text-night"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
-        <div className="max-w-5xl mx-auto">
-            {/* Tabs */}
-            <div className="flex flex-wrap justify-center gap-4 mb-10 border-b border-amber-dark pb-4">
-            {Object.keys(menuData).map((category) => (
-                <button
-                key={category}
-                onClick={() => setActiveTab(category)}
-                className={`px-5 py-2 text-md rounded-full transition-all duration-300 tracking-wide ${
-                    activeTab === category
-                    ? "bg-amber text-white shadow-md"
-                    : "bg-white text-night border border-amber hover:bg-amber-light hover:text-night"
-                }`}
-                >
-                {category}
-                </button>
+
+        {/* Menu Items */}
+        <AnimatePresence mode="wait">
+          <motion.section
+            key={activeTab}
+            className="grid gap-6 grid-cols-1 sm:grid-cols-2"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          >
+            {menuData[activeTab].map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition-all duration-300"
+                variants={itemVariants}
+              >
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-amber-dark">{item.name}</h3>
+                    <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+                  </div>
+                  <span className="text-amber-dark font-semibold text-sm whitespace-nowrap mt-1">
+                    {item.price}
+                  </span>
+                </div>
+              </motion.div>
             ))}
-            </div>
+          </motion.section>
+        </AnimatePresence>
 
-            {/* Menu Items */}
-            <section className="grid gap-6 grid-cols-1 sm:grid-cols-2">
-                {menuData[activeTab].map((item, index) => (
-                    <div
-                    key={index}
-                    className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition-all duration-300"
-                    >
-                    <div className="flex justify-between items-start">
-                        <div>
-                        <h3 className="text-xl font-serif font-bold text-amber-dark">{item.name}</h3>
-                        <p className="text-sm text-gray-600 mt-1">{item.description}</p>
-                        </div>
-                        <span className="text-amber-dark font-semibold text-sm whitespace-nowrap mt-1">
-                        {item.price}
-                        </span>
-                    </div>
-                    </div>
-                ))}
-            </section>
-
-            {/* Quote / Description Banner */}
-            <section className="text-center mt-16 max-w-3xl mx-auto">
-            <p className="italic text-night text-lg sm:text-xl font-serif font-medium px-6">
-                “Whether you're looking for an expertly made classic or something more adventurous, our skilled mixologists are ready to create the perfect drink for you.”
-            </p>
-            </section>
-        </div>
+        {/* Quote / Description Banner */}
+        <motion.section
+          className="text-center mt-16 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <p className="italic text-night text-lg sm:text-xl font-serif font-medium px-6">
+            “Whether you're looking for an expertly made classic or something more adventurous, our skilled mixologists are ready to create the perfect drink for you.”
+          </p>
+        </motion.section>
+      </div>
     </section>
   );
 };
