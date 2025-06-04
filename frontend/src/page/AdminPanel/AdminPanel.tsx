@@ -4,6 +4,9 @@ import SearchBar from "../../components/AdminPanel/SearchBar";
 import DateFilter from "../../components/AdminPanel/DateFilter";
 import ReservationTable from "../../components/AdminPanel/ReservationTable";
 import ErrorAlert from "../../components/AdminPanel/ErrorAlert";
+import ReservationsStats from "../../components/ReservationStats/ReservationStats";
+import axios from "axios";
+
 
 const AdminPanel: React.FC = () => {
   const [reservations, setReservations] = useState<Reservation[]>([]);
@@ -49,7 +52,7 @@ const AdminPanel: React.FC = () => {
   };
 
   const filteredReservations = reservations.filter((r) => {
-    const matchesText = [r.name, r.email, r.date, r.message]
+    const matchesText = [r.name, r.email, r.date, r.type, r.message]
       .filter(Boolean)
       .some((field) =>
         field!.toLowerCase().includes(searchTerm.toLowerCase())
@@ -61,6 +64,20 @@ const AdminPanel: React.FC = () => {
 
     return matchesText && matchesDate;
   });
+
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
+  const handleConfirm = async (reservation: Reservation) => {
+    try {
+      await axios.post(`${BASE_URL}/api/send-confirmation`, reservation);
+      alert("Confirmation sent!");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to send confirmation.");
+    }
+  };
+
+
 
   return (
     <main className="min-h-screen bg-cream font-sans p-6 max-w-7xl mx-auto">
@@ -88,7 +105,9 @@ const AdminPanel: React.FC = () => {
         onDelete={handleDelete}
         deletingId={deletingId}
         loading={loading}
+        handleConfirm={handleConfirm}
       />
+      <ReservationsStats />
     </main>
   );
 };

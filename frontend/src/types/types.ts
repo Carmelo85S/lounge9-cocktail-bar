@@ -29,4 +29,5 @@ export interface Reservation {
   date: string;
   time: string;
   message?: string;
+  type?: string;
 }

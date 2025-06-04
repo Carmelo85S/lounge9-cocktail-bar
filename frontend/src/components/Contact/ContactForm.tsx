@@ -8,9 +8,10 @@ interface ContactFormProps {
     time: string;
     guests: number;
     message: string;
+    type?: string;
   };
   handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void;
   handleSubmit: (e: React.FormEvent) => void;
 }
@@ -26,50 +27,46 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
       <h3 className="text-2xl font-serif text-amber-dark font-semibold mb-6">
         Make a Reservation
       </h3>
+
       <form className="space-y-6" onSubmit={handleSubmit} noValidate>
-        {/* Name + Email */}
-        <div className="grid md:grid-cols-2 gap-4">
-          <InputField
-            id="name"
-            label="Name"
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your name"
-            required
-          />
-          <InputField
-            id="email"
-            label="Email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your email"
-            required
-          />
-        </div>
+        <InputField
+          id="name"
+          label="Name"
+          type="text"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your name"
+          required
+        />
 
-        {/* Date + Time */}
-        <div className="grid md:grid-cols-2 gap-4">
-          <InputField
-            id="date"
-            label="Date"
-            type="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-          <InputField
-            id="time"
-            label="Time"
-            type="time"
-            value={formData.time}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <InputField
+          id="email"
+          label="Email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your email"
+          required
+        />
 
-        {/* Guests */}
+        <InputField
+          id="date"
+          label="Date"
+          type="date"
+          value={formData.date}
+          onChange={handleChange}
+          required
+        />
+
+        <InputField
+          id="time"
+          label="Time"
+          type="time"
+          value={formData.time}
+          onChange={handleChange}
+          required
+        />
+
         <InputField
           id="guests"
           label="Number of Guests"
@@ -81,6 +78,29 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           max={20}
           required
         />
+
+        {/* New Event Type Dropdown */}
+        <div>
+          <label
+            htmlFor="type"
+            className="block text-sm text-night font-medium mb-1"
+          >
+            Type of Reservation
+          </label>
+          <select
+            id="type"
+            name="type"
+            value={formData.type || ""}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-dark"
+          >
+            <option value="">Select an option</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Afterwork">Afterwork</option>
+            <option value="Jazz Night">Jazz Night</option>
+          </select>
+        </div>
 
         {/* Message */}
         <div>
@@ -100,7 +120,6 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           />
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="w-full bg-amber text-white font-semibold py-3 rounded-md hover:bg-amber-dark transition"
@@ -117,7 +136,7 @@ interface InputFieldProps {
   label: string;
   type: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   placeholder?: string;
   required?: boolean;
   min?: number;
@@ -136,10 +155,7 @@ const InputField = ({
   max,
 }: InputFieldProps) => (
   <div>
-    <label
-      htmlFor={id}
-      className="block text-sm text-night font-medium mb-1"
-    >
+    <label htmlFor={id} className="block text-sm text-night font-medium mb-1">
       {label}
     </label>
     <input
@@ -152,7 +168,6 @@ const InputField = ({
       required={required}
       min={min}
       max={max}
-      aria-label={label}
       className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-dark"
     />
   </div>
