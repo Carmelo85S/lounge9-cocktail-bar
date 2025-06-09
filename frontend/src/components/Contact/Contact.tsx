@@ -11,10 +11,11 @@ const Contact = () => {
     time: "",
     guests: 1,
     message: "",
+    type: "All"
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
@@ -40,6 +41,7 @@ const Contact = () => {
           time: "",
           guests: 1,
           message: "",
+          type:""
         });
       } else {
         alert("Failed to submit reservation. Please try again.");

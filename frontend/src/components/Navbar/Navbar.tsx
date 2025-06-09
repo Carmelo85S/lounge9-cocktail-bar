@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
-      setMenuOpen(false);
+      setMenuOpen(false); // Close mobile menu on click
     }
   };
 
@@ -35,6 +35,7 @@ const Navbar: React.FC = () => {
     } else {
       navigate('/login');
     }
+    setMenuOpen(false);
   };
 
   return (
@@ -48,9 +49,9 @@ const Navbar: React.FC = () => {
           Lounge<span className="text-amber text-4xl">9</span>
         </div>
 
-        {/* Desktop */}
+        {/* Desktop Nav */}
         <ul className="hidden md:flex space-x-6 items-center font-sans text-night text-base">
-          {navLinks.map((link: NavLink) => (
+          {navLinks.map((link) => (
             <li key={link.id}>
               <button onClick={() => scrollTo(link.id)} className="hover:text-amber transition">
                 {link.name}
@@ -77,7 +78,11 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+          >
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
@@ -85,9 +90,9 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden px-4 pb-4 bg-cream/90 backdrop-blur-sm border-t border-night/10">
-          <ul className="space-y-4 font-sans text-night text-base">
-            {navLinks.map((link: NavLink) => (
+        <div className="md:hidden px-4 pb-4 bg-cream/90 backdrop-blur-sm border-t border-night/10 animate-slideDown">
+          <ul className="space-y-4 font-sans text-night text-base pt-4">
+            {navLinks.map((link) => (
               <li key={link.id}>
                 <button
                   onClick={() => scrollTo(link.id)}
@@ -97,6 +102,7 @@ const Navbar: React.FC = () => {
                 </button>
               </li>
             ))}
+            <hr className="border-t border-night/10" />
             <li>
               <button
                 onClick={() => scrollTo('contact')}

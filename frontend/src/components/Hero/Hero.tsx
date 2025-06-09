@@ -13,7 +13,7 @@ const Hero = () => {
       style={{ backgroundImage: `url(${heroBg})` }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60 z-0" />
+      <div className="absolute inset-0 bg-black/50 z-0" />
 
       {/* Content */}
       <motion.div

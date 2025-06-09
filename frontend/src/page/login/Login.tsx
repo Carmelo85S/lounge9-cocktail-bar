@@ -1,23 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if(username === "admin" && password === "admin123"){
-      localStorage.setItem("isAuthenticated", "true");
-      navigate("/admin");
-    }else{
-      setError("Wrong user and/or password")
-    }
-  }
 
+    try {
+      const response = await axios.post("http://localhost:3000/login", {
+        username,
+        password,
+      });
+
+      localStorage.setItem("token", response.data.token);
+      navigate("/admin");
+    } catch (err) {
+      setError("Invalid credentials");
+    }
+  };
+  
   return (
      <section className="min-h-screen flex items-center justify-center bg-cream font-sans px-4">
       <form

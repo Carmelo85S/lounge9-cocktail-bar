@@ -12,7 +12,8 @@ import Admin from "./page/AdminPanel/AdminPanel";
 import Gallery from "./components/Gallery/Gallery";
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const token = localStorage.getItem("token");
+  const isAuthenticated = Boolean(token && token !== "null" && token !== "");
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 

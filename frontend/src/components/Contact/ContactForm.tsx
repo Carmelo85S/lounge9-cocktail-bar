@@ -8,7 +8,7 @@ interface ContactFormProps {
     time: string;
     guests: number;
     message: string;
-    type?: string;
+    type: string;
   };
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
