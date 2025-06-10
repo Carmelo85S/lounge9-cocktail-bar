@@ -104,7 +104,7 @@ const handleDelete = async (id: string) => {
 
     const handleLogout = () => {
       localStorage.removeItem("token");
-      navigate("/login");
+      navigate("/");
     };
 
   return (
