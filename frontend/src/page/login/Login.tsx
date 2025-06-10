@@ -30,7 +30,7 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md border border-amber-dark"
       >
-        <h2 className="text-2xl font-serif text-night mb-6 text-center">Accesso Admin</h2>
+        <h2 className="text-2xl font-serif text-night mb-6 text-center">Admin access</h2>
 
         <label htmlFor="username" className="block text-night mb-1">
           Username

@@ -3,14 +3,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
-// run this separately once
 import bcrypt from "bcryptjs";
 
 import jwt from 'jsonwebtoken';
-
-const hash = await bcrypt.hash("yourPasswordHere", 10);
-console.log(hash);
-
 
 dotenv.config();
 
@@ -49,7 +44,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const authenticate = (req, res, next) => {
-  const authHeader = req.headers.authorization; // e.g. "Bearer TOKEN"
+  const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) return res.status(401).json({ message: 'Missing token' });
@@ -96,8 +91,6 @@ app.get('/booking', authenticate, async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-
-
 
 app.post('/booking', async (req, res) => {
   try {
