@@ -97,15 +97,16 @@ const handleDelete = async (id: string) => {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/send-confirmation`, reservation);
       alert("Confirmation sent!");
-    } catch {
-      alert("Failed to send confirmation.");
+    } catch (error: any) {
+      const backendMessage = error.response?.data?.error || error.message;
+      alert(`Failed to send confirmation: ${backendMessage}`);
     }
   };
 
-    const handleLogout = () => {
-      localStorage.removeItem("token");
-      navigate("/");
-    };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   return (
     <main className="min-h-screen bg-cream font-sans max-w-7xl mx-auto">
