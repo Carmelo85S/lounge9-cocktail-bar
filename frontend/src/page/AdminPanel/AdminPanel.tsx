@@ -22,7 +22,7 @@ const AdminPanel: React.FC = () => {
 
   const [allReservations, setAllReservations] = useState<Reservation[]>([]);
 
-  const BASE_URL = import.meta.env.VITE_API_URL;
+ import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const AdminPanel: React.FC = () => {
     setLoading(true);
     setError(null);
     const token = localStorage.getItem("token");
-    const res = await fetch(`${BASE_URL}/booking`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/booking`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -60,7 +60,7 @@ const handleDelete = async (id: string) => {
   setDeletingId(id);
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch(`${BASE_URL}/booking/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/booking/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -95,7 +95,7 @@ const handleDelete = async (id: string) => {
 
   const handleConfirm = async (reservation: Reservation) => {
     try {
-      await axios.post(`${BASE_URL}/api/send-confirmation`, reservation);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/send-confirmation`, reservation);
       alert("Confirmation sent!");
     } catch {
       alert("Failed to send confirmation.");
