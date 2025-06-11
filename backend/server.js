@@ -12,7 +12,11 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://lounge9-cocktail-bar-xgfj.vercel.app',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
