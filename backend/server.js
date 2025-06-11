@@ -122,6 +122,9 @@ app.post('/booking', async (req, res) => {
 app.post('/api/send-confirmation', async (req, res) => {
   const { name, email, date, time, guests, type } = req.body;
 
+      console.log("Email user:", process.env.EMAIL_USER);
+      console.log("Email pass:", process.env.EMAIL_PASS);
+      
   try {
     await transporter.sendMail({
       from: `"Lounge9" <${process.env.EMAIL_USER}>`,
