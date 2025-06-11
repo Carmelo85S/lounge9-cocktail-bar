@@ -22,8 +22,6 @@ const AdminPanel: React.FC = () => {
 
   const [allReservations, setAllReservations] = useState<Reservation[]>([]);
 
- import.meta.env.VITE_API_URL;
-
   const navigate = useNavigate();
 
   useEffect(() => {

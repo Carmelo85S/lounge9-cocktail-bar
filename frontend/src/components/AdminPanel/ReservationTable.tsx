@@ -137,9 +137,14 @@ const ReservationTable: React.FC<Props> = ({
             <p className="text-sm">Date: {new Date(r.date).toLocaleDateString()}</p>
             <p className="text-sm">Type: {r.type}</p>
             {selectedReservationId === r._id && r.message && (
-              <p className="text-sm text-night mt-2 italic">
-                <strong>Message:</strong> {r.message}
-              </p>
+              <div>
+                <p className="text-sm text-night mt-2 italic">
+                  <strong>Message:</strong> {r.message}
+                </p>
+                <a href={`mailto:${r.email}`} className="text-blue-600 hover:underline">
+                  Send Email
+                </a>
+              </div>
             )}
           </div>
         ))}
