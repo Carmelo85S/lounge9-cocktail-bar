@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Reservation } from "../../types/types";
-import { Trash2, CheckCircle2 } from "lucide-react";
+import { Trash2, CheckCircle2, Mail } from "lucide-react";
 
 interface Props {
   reservations: Reservation[];
@@ -82,6 +82,13 @@ const ReservationTable: React.FC<Props> = ({
                     >
                       <CheckCircle2 size={20} />
                     </button>
+                    <a
+                      href={`mailto:${r.email}?subject=Regarding your reservation&body=Hi ${r.name},%0D%0A`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-blue-600 hover:text-blue-800"
+                    >
+                      <Mail size={20} />
+                    </a>
                   </td>
                 </tr>
                 {selectedReservationId === r._id && r.message && (
@@ -141,9 +148,6 @@ const ReservationTable: React.FC<Props> = ({
                 <p className="text-sm text-night mt-2 italic">
                   <strong>Message:</strong> {r.message}
                 </p>
-                <a href={`mailto:${r.email}`} className="text-blue-600 hover:underline">
-                  Send Email
-                </a>
               </div>
             )}
           </div>
