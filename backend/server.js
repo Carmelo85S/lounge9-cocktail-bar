@@ -195,7 +195,7 @@ app.delete('/booking/:id', async (req, res) => {
   }
 });
 
-app.use('*', (req, res) => {
+app.use((req, res) => {
   console.log('Unhandled path:', req.originalUrl);
   res.status(404).json({ message: 'Not found' });
 });
