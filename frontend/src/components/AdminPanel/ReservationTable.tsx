@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Reservation } from "../../types/types";
-import { Trash2, CheckCircle2, Mail } from "lucide-react";
+import { Trash2, CheckCircle2, MailIcon } from "lucide-react";
 
 interface Props {
   reservations: Reservation[];
@@ -87,7 +87,7 @@ const ReservationTable: React.FC<Props> = ({
                       onClick={(e) => e.stopPropagation()}
                       className="text-blue-600 hover:text-blue-800"
                     >
-                      <Mail size={20} />
+                      <MailIcon size={20} />
                     </a>
                   </td>
                 </tr>
