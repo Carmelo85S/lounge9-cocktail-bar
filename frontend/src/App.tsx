@@ -18,7 +18,7 @@ const PrivateRoute = ({ children }: { children: JSX.Element }) => {
 };
 
 const App = () => (
-  <Router basename="/lounge9-cocktail-bar">
+  <Router basename="/">
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route
