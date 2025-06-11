@@ -144,7 +144,7 @@ app.post('/api/send-confirmation', async (req, res) => {
     res.status(200).json({ message: "Confirmation email sent" });
   } catch (error) {
     console.error("Email send error:", error);
-    res.status(500).json({ message: "Failed to send email" });
+    res.status(500).json({ message: "Failed to send email", error: error.message });
   }
 });
 
