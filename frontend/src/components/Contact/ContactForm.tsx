@@ -1,10 +1,13 @@
+import React from "react";
 import { motion } from "framer-motion";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface ContactFormProps {
   formData: {
     name: string;
     email: string;
-    date: string;
+    date: Date | null;  // ora è Date | null
     time: string;
     guests: number;
     message: string;
@@ -13,11 +16,17 @@ interface ContactFormProps {
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void;
+  handleDateChange: (date: Date | null) => void; // nuovo handler per data
   handleSubmit: (e: React.FormEvent) => void;
 }
 
-const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps) => {
-  const today = new Date().toISOString().split("T")[0];
+const ContactForm = ({
+  formData,
+  handleChange,
+  handleDateChange,
+  handleSubmit,
+}: ContactFormProps) => {
+  const today = new Date();
 
   return (
     <motion.div
@@ -51,6 +60,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           required
         />
 
+        {/* Campo Data con react-datepicker */}
         <div>
           <label
             htmlFor="date"
@@ -58,18 +68,17 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           >
             Date
           </label>
-          <input
+          <DatePicker
             id="date"
-            name="date"
-            type="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-            min={today}
+            selected={formData.date}
+            onChange={handleDateChange}
+            minDate={today}
+            dateFormat="dd/MM/yyyy"
             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-dark"
-            aria-describedby="dateHelp"
+            placeholderText="Select a date"
+            required
           />
-          <small id="dateHelp" className="text-xs text-gray-500">
+          <small className="text-xs text-gray-500">
             Please select a date from today onwards.
           </small>
         </div>
@@ -83,7 +92,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           required
           min="18:00"
           max="23:00"
-          step={900}
+          step={900} // 15 minuti
         />
 
         <InputField
@@ -98,7 +107,6 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           required
         />
 
-        {/* New Event Type Dropdown */}
         <div>
           <label
             htmlFor="type"
@@ -121,7 +129,6 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           </select>
         </div>
 
-        {/* Message */}
         <div>
           <label
             htmlFor="message"
@@ -155,7 +162,9 @@ interface InputFieldProps {
   label: string;
   type: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
   placeholder?: string;
   required?: boolean;
   min?: number | string;

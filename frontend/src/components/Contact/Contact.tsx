@@ -7,11 +7,11 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    date: "",
+    date: null as Date | null,  // preciso tipo Date | null
     time: "",
     guests: 1,
     message: "",
-    type: "All"
+    type: "",
   });
 
   const handleChange = (
@@ -24,24 +24,38 @@ const Contact = () => {
     }));
   };
 
+  const handleDateChange = (date: Date | null) => {
+    setFormData((prev) => ({
+      ...prev,
+      date,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Opzionale: formattare la data come stringa ISO prima di inviare
+    const formattedData = {
+      ...formData,
+      date: formData.date ? formData.date.toISOString().split("T")[0] : null,
+    };
+
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/booking`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formattedData),
       });
       if (response.ok) {
         alert("Reservation submitted successfully!");
         setFormData({
           name: "",
           email: "",
-          date: "",
+          date: null,
           time: "",
           guests: 1,
           message: "",
-          type:""
+          type: "",
         });
       } else {
         alert("Failed to submit reservation. Please try again.");
@@ -74,6 +88,7 @@ const Contact = () => {
           <ContactForm
             formData={formData}
             handleChange={handleChange}
+            handleDateChange={handleDateChange}
             handleSubmit={handleSubmit}
           />
           <ContactInfo />
