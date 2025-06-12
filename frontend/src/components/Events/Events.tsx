@@ -11,7 +11,7 @@ const Events: React.FC = () => {
       {
         img: "https://images.pexels.com/photos/3394310/pexels-photo-3394310.jpeg",
         name: "Afterwork",
-        time: "17:00 - 21:00",
+        time: "Every day 17:00 - 20:00",
         description: "Start your weekend with curated cocktails and relaxing beats.",
         onClick: () => {
           document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -20,7 +20,7 @@ const Events: React.FC = () => {
       {
         img: "https://images.pexels.com/photos/1049690/pexels-photo-1049690.jpeg",
         name: "Live Jazz Nights",
-        time: "Every Thursday",
+        time: "Every day 20:00 - 23:00",
         description: "Enjoy deep house and lounge music in a luxurious setting.",
         onClick: () => {
           document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -29,7 +29,7 @@ const Events: React.FC = () => {
       {
         img: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         name: "Dinner",
-        time: "17:00 - 22:00",
+        time: "Every day 19:00 - 22:00",
         description: "Savor a hearty meal of classic dishes served warm and fresh for the perfect end to your day.",
         onClick: () => {
           document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });

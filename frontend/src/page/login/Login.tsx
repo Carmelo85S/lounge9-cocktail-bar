@@ -23,14 +23,21 @@ const Login = () => {
       setError("Invalid credentials");
     }
   };
-  
+
   return (
-     <section className="min-h-screen flex items-center justify-center bg-cream font-sans px-4">
+    <section className="min-h-screen flex items-center justify-center bg-cream font-sans px-4">
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md border border-amber-dark"
       >
         <h2 className="text-2xl font-serif text-night mb-6 text-center">Admin access</h2>
+
+        {/* DEMO CREDENTIALS */}
+        <div className="mb-6 bg-amber/10 border border-amber text-amber-dark rounded-md p-3 text-sm">
+          <p><strong>Demo login</strong></p>
+          <p>Username: <code>admin</code></p>
+          <p>Password: <code>admin123</code></p>
+        </div>
 
         <label htmlFor="username" className="block text-night mb-1">
           Username
@@ -66,7 +73,7 @@ const Login = () => {
         </button>
       </form>
     </section>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
