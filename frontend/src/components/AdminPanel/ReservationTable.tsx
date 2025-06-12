@@ -62,7 +62,7 @@ const ReservationTable: React.FC<Props> = ({
                   <td className="p-3">{r.guests}</td>
                   <td className="p-3">{new Date(r.date).toLocaleDateString()}</td>
                   <td className="p-3">{r.type}</td>
-                  <td className="p-3 space-x-3">
+                  <td className="p-5 space-x-5">
                     <button
                       disabled={deletingId === r._id || loading}
                       onClick={(e) => {
@@ -117,7 +117,7 @@ const ReservationTable: React.FC<Props> = ({
           >
             <div className="flex justify-between items-center">
               <h3 className="font-semibold text-lg">{r.name}</h3>
-              <div className="space-x-3 flex-shrink-0">
+              <div className="space-x-5 flex-shrink-0">
                 <button
                   disabled={deletingId === r._id || loading}
                   onClick={(e) => {
@@ -138,12 +138,12 @@ const ReservationTable: React.FC<Props> = ({
                   <CheckCircle2 size={20} />
                 </button>
                 <a
-                    href={`mailto:${r.email}?subject=Regarding your reservation&body=Hi ${r.name},%0D%0A`}
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-blue-600 hover:text-blue-800"
-                  >
-                    <Mail size={20} />
-                  </a>
+                  href={`mailto:${r.email}?subject=Regarding your reservation&body=Hi ${r.name},%0D%0A`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  <Mail size={20} />
+                </a>
               </div>
             </div>
             <p className="text-sm text-gray-700">{r.email}</p>
