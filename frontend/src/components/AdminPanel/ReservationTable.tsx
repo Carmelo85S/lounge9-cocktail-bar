@@ -47,7 +47,7 @@ const ReservationTable: React.FC<Props> = ({
               <th className="p-3">Guests</th>
               <th className="p-3">Date</th>
               <th className="p-3">Type</th>
-              <th className="p-3">Actions</th>
+              <th className="p-3 min-w-[120px]">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -62,33 +62,35 @@ const ReservationTable: React.FC<Props> = ({
                   <td className="p-3">{r.guests}</td>
                   <td className="p-3">{new Date(r.date).toLocaleDateString()}</td>
                   <td className="p-3">{r.type}</td>
-                  <td className="p-5 space-x-5">
-                    <button
-                      disabled={deletingId === r._id || loading}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onDelete(r._id);
-                      }}
-                      className="text-red-600 hover:text-red-800 disabled:opacity-50"
-                    >
-                      <Trash2 size={20} />
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleConfirm(r);
-                      }}
-                      className="text-green-600 hover:text-green-800"
-                    >
-                      <CheckCircle2 size={20} />
-                    </button>
-                    <a
-                      href={`mailto:${r.email}?subject=Regarding your reservation&body=Hi ${r.name},%0D%0A`}
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      <Mail size={20} />
-                    </a>
+                  <td className="p-5">
+                    <div className="flex items-center gap-4">
+                      <button
+                        disabled={deletingId === r._id || loading}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDelete(r._id);
+                        }}
+                        className="text-red-600 hover:text-red-800 disabled:opacity-50"
+                      >
+                        <Trash2 size={20} />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleConfirm(r);
+                        }}
+                        className="text-green-600 hover:text-green-800"
+                      >
+                        <CheckCircle2 size={20} />
+                      </button>
+                      <a
+                        href={`mailto:${r.email}?subject=Regarding your reservation&body=Hi ${r.name},%0D%0A`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        <Mail size={20} />
+                      </a>
+                    </div>
                   </td>
                 </tr>
                 {selectedReservationId === r._id && r.message && (
@@ -117,7 +119,7 @@ const ReservationTable: React.FC<Props> = ({
           >
             <div className="flex justify-between items-center">
               <h3 className="font-semibold text-lg">{r.name}</h3>
-              <div className="space-x-5 flex-shrink-0">
+              <div className="flex items-center gap-4 flex-shrink-0">
                 <button
                   disabled={deletingId === r._id || loading}
                   onClick={(e) => {
