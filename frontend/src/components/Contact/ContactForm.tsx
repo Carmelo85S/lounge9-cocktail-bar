@@ -17,8 +17,6 @@ interface ContactFormProps {
 }
 
 const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps) => {
-  const today = new Date().toISOString().split("T")[0];
-
   return (
     <motion.div
       className="bg-white p-8 rounded-2xl shadow-md"
@@ -51,28 +49,14 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           required
         />
 
-        <div>
-          <label
-            htmlFor="date"
-            className="block text-sm text-night font-medium mb-1"
-          >
-            Date
-          </label>
-          <input
-            id="date"
-            name="date"
-            type="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-            min={today}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-dark"
-            aria-describedby="dateHelp"
-          />
-          <small id="dateHelp" className="text-xs text-gray-500">
-            Please select a date from today onwards.
-          </small>
-        </div>
+        <InputField
+          id="date"
+          label="Date"
+          type="date"
+          value={formData.date}
+          onChange={handleChange}
+          required
+        />
 
         <InputField
           id="time"
@@ -81,9 +65,6 @@ const ContactForm = ({ formData, handleChange, handleSubmit }: ContactFormProps)
           value={formData.time}
           onChange={handleChange}
           required
-          min="18:00"
-          max="23:00"
-          step={900}
         />
 
         <InputField
@@ -158,9 +139,8 @@ interface InputFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   placeholder?: string;
   required?: boolean;
-  min?: number | string;
-  max?: number | string;
-  step?: number;
+  min?: number;
+  max?: number;
 }
 
 const InputField = ({
@@ -173,7 +153,6 @@ const InputField = ({
   required = false,
   min,
   max,
-  step,
 }: InputFieldProps) => (
   <div>
     <label htmlFor={id} className="block text-sm text-night font-medium mb-1">
@@ -189,7 +168,6 @@ const InputField = ({
       required={required}
       min={min}
       max={max}
-      step={step}
       className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-dark"
     />
   </div>
