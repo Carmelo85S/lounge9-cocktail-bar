@@ -10,7 +10,7 @@ const Events: React.FC = () => {
     Events: [
       {
         img: "https://images.pexels.com/photos/3394310/pexels-photo-3394310.jpeg",
-        name: "Afterwork Fridays",
+        name: "Afterwork",
         time: "17:00 - 21:00",
         description: "Start your weekend with curated cocktails and relaxing beats.",
         onClick: () => {
@@ -27,10 +27,10 @@ const Events: React.FC = () => {
         },
       },
       {
-        img: "https://images.pexels.com/photos/11522840/pexels-photo-11522840.jpeg",
-        name: "Sunset Aperitivo",
-        time: "Sundays 16:00 - 20:00",
-        description: "Unwind with spritzes and tapas during golden hour.",
+        img: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        name: "Dinner",
+        time: "17:00 - 22:00",
+        description: "Savor a hearty meal of classic dishes served warm and fresh for the perfect end to your day.",
         onClick: () => {
           document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
         },
